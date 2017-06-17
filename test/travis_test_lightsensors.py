@@ -8,7 +8,7 @@ from pimouse_ros.msg import LightSensorValues
 class LightsensorTest(unittest.TestCase):
     def setUp(self):
         self.count = 0
-        rospy.Subscriber('/lightsensors', LightSensorValues,self.callback)
+        rospy.Subscriber('/lightsensors', LightSensorValues, self.callback)
         self.values = LightSensorValues()
 
     def callback(self,data):
@@ -37,7 +37,7 @@ class LightsensorTest(unittest.TestCase):
         time.sleep(3)
         
         self.assertFalse(self.count == 0, "cannot subscribe the topic")
-        self.check_values(4321,123,0,-1\n)
+        self.check_values(4321,123,0,-1)
 
     def test_change_parameter(self):
         rospy.set_param('lightsensors_freq' ,1)
