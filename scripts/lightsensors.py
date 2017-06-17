@@ -4,12 +4,12 @@ import sys, rospy
 from pimouse_ros.msg import LightSensorValues
 
 def get_freq():
-    f = rospy.get_param('lightsensor_freq',10)
+    f = rospy.get_param('lightsensors_freq',10)
     try:
         if f <= 0.0:
             raise Exception()
     except:        
-        rospy.logerr("value error: ligtsensor_freq")
+        rospy.logerr("value error: ligtsensors_freq")
         sys.exit(1)
 
     return f
