@@ -24,11 +24,11 @@ class LightsensorTest(unittest.TestCase):
         self.assertEqual(vs.sum_all, lf+ls+rs+rf, "different value: sum_all" )
         self.assertEqual(vs.sum_forward, lf+rf, "different value: sum_forward")
 
-    def test_node_exisit(self):
+    def test_node_exist(self):
         nodes = rosnode.get_node_names()
         self.assertIn('/lightsensors', nodes, "node does not exist" )
 
-    def test_get_value(self)
+    def test_get_value(self):
         rospy.set_param('lightsensors_freq',10)
         time.sleep(2)
         with open("/dev/rtlightsensor0","w") as f:
@@ -36,7 +36,7 @@ class LightsensorTest(unittest.TestCase):
 
         time.sleep(3)
         
-        selfassertFalse(self.count == 0, "cannot subscribe the topic")
+        self.assertFalse(self.count == 0, "cannot subscribe the topic")
         self.check_values(4321,123,0,-1\n)
 
     def test_change_parameter(self):
@@ -45,7 +45,7 @@ class LightsensorTest(unittest.TestCase):
         c_prev = self.count
         time.sleep(3)
 
-        self.assertTrue(self.conf < c_prev + 4, "freq does not change")
+        self.assertTrue(self.count < c_prev + 4, "freq does not change")
         self.assertFalse(self.count == c_prev, "subscriber is stopped")
 
 if __name__ == '__main__':
