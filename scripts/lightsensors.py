@@ -40,7 +40,7 @@ if __name__ == '__main__':
         f = get_freq()
         if f != freq:
             freq = f
-            rate = rospy.Rate()
+            rate = rospy.Rate(freq)
 
         rate.sleep()
 
