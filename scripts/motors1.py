@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/fff python
 #encoding: utf8
 import sys, rospy, math
 from pimouse_ros.msg import MotorFreqs
@@ -28,8 +28,8 @@ class Motor():
 
     def set_raw_freq(self,left_hz,right_hz):
 	if not self.is_on:
-	       rospy.logerr("not enpowered")
-               return
+	    rospy.logerr("not enpowered")
+            return
 
 	try:
             with open("/dev/rtmotor_raw_l0",'w') as lf,\
@@ -40,14 +40,14 @@ class Motor():
             rospy.logerr("cannot write to rtmotor_raw_*")
 
     def callback_raw_freq(self,message):
-         self.set_raw_freq(message.left_hz,message.right_hz)
+        self.set_raw_freq(message.left_hz,message.right_hz)
 
     def callback_cmd_vel(self,message):
-         forward_hz = 80000.0*message.linear.x/(9*math.pi)
-         rot_hz = 400.0*message.angular.z/math.pi
-         self.set_raw_freq(forward_hz-rot_hz, forward_hz+rot_hz)
-         self.using_cmd_vel = True
-         self.last_time = rospy.Time.now()
+        forward_hz = 80000.0*message.linear.x/(9*math.pi)
+        rot_hz = 400.0*message.angular.z/math.pi
+        self.set_raw_freq(forward_hz-rot_hz, forward_hz+rot_hz)
+        self.using_cmd_vel = True
+        self.last_time = rospy.Time.now()
 
 if __name__ == '__main__':
     rospy.init_node('motors')
